@@ -13,6 +13,17 @@
   ],
   "author": "Sampreet Singh",
   "type": "module",
-  "main": "index.js",
-  "scripts": {}
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "typescript": "^7.0.2"
+  }
 }
