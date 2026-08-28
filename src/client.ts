@@ -1,6 +1,9 @@
 // Main class for interacting with the VALORANT API
 
 import { local } from "./reader.js";
+import { HTTP } from "./http.js";
+
+import type { Request } from "./http.js";
 
 class Client {
   // Values needed to connect to VALORANT
@@ -14,7 +17,12 @@ class Client {
   _jwt: string | undefined;
   _version: string | undefined;
 
-  constructor() {}
+  // Function to send requests to VALORANT services and endpoints
+  request: Request;
+
+  constructor() {
+    this.request = new HTTP(this).request;
+  }
 
   /**
    * Reads values from the local log and lock files and gets the remaining
