@@ -25,10 +25,10 @@ const CLIENT_PLATFORM = Buffer.from(JSON.stringify(PLATFORM_TEMPLATE)).toString(
  */
 function base(type: Service, region?: string, shard?: string, port?: string) {
   return {
-    shared: `https://shared.${shard}.a.pvp.net/`,
-    pd: `https://pd.${shard}.a.pvp.net/`,
-    local: `https://127.0.0.1:${port}/`,
-    glz: `https://glz-${region}-1.${shard}.a.pvp.net/`,
+    shared: `https://shared.${shard}.a.pvp.net`,
+    pd: `https://pd.${shard}.a.pvp.net`,
+    local: `https://127.0.0.1:${port}`,
+    glz: `https://glz-${region}-1.${shard}.a.pvp.net`,
   }[type];
 }
 
