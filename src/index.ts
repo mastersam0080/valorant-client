@@ -3,3 +3,4 @@
 export { Client } from "./client.js";
 
 export type { Agent } from "./agent.js";
+export type { ItemType } from "./item.js";

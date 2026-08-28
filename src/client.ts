@@ -2,6 +2,9 @@
 
 import { Game } from "./endpoints/game.js";
 import { Pregame } from "./endpoints/pregame.js";
+import { Loadout } from "./endpoints/loadout.js";
+import { Contract } from "./endpoints/contract.js";
+import { Store } from "./endpoints/store.js";
 
 import { HTTP } from "./http.js";
 import { local } from "./reader.js";
@@ -28,11 +31,17 @@ class Client {
   // Classes that implement VALORANT endpoints
   pregame: Pregame;
   game: Game;
+  loadout: Loadout;
+  contract: Contract;
+  store: Store;
 
   constructor() {
     this.request = new HTTP(this).request;
     this.pregame = new Pregame(this);
     this.game = new Game(this);
+    this.loadout = new Loadout(this);
+    this.contract = new Contract(this);
+    this.store = new Store(this);
   }
 
   /**
