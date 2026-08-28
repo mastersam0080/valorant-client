@@ -1,9 +1,13 @@
 // Main class for interacting with the VALORANT API
 
-import { local } from "./reader.js";
+import { Game } from "./endpoints/game.js";
+import { Pregame } from "./endpoints/pregame.js";
+
 import { HTTP } from "./http.js";
+import { local } from "./reader.js";
 
 import type { Request } from "./http.js";
+
 import type { EntitlementsTokenResponse } from "valorant-api-types";
 
 class Client {
@@ -21,15 +25,19 @@ class Client {
   // Function to send requests to VALORANT services and endpoints
   request: Request;
 
+  // Classes that implement VALORANT endpoints
+  pregame: Pregame;
+  game: Game;
+
   constructor() {
     this.request = new HTTP(this).request;
+    this.pregame = new Pregame(this);
+    this.game = new Game(this);
   }
 
   /**
    * Reads values from local log and lock files and gets the remaining values from
-   * local and external APIs before connecting to VALORANT.
-   *
-   * Stores all values and connects to VALORANT.
+   * local and external APIs before storing them and connecting to VALORANT.
    */
   async connect() {
     // Read values from the lockfile and ShooterGame.log
