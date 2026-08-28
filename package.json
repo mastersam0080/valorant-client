@@ -12,6 +12,7 @@
     "typescript"
   ],
   "author": "Sampreet Singh",
+  "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

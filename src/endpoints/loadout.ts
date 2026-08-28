@@ -1,6 +1,3 @@
-// Why techchrism
-import { setPlayerLoadoutEndpoint } from "valorant-api-types";
-
 import type { Client } from "../client.js";
 import type { Request } from "../http.js";
 
@@ -11,6 +8,9 @@ import type {
 
 // Zod is in the dependency list of "valorant-api-types"
 import type { z } from "zod";
+
+// Why techchrism
+import { setPlayerLoadoutEndpoint } from "valorant-api-types";
 
 // Get the request body type from the endpoint's schema
 type SetPlayerLoadoutBody = z.input<typeof setPlayerLoadoutEndpoint.body>;
