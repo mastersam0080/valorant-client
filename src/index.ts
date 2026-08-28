@@ -1,3 +1,3 @@
-export function hello() {
-  console.log("Hello, world!");
-}
+// Everything exported from this file is part of the package's public API
+
+export { Client } from "./client.js";
