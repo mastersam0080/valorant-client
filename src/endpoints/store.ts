@@ -1,17 +1,14 @@
-import { ITEM_TYPES } from "../item.js";
-
 import type { Client } from "../client.js";
 import type { Request } from "../http.js";
-import type { ItemType } from "../item.js";
+
 import type {
   OwnedItemsResponse,
-  PricesResponse,
   StorefrontResponse,
   WalletResponse,
 } from "valorant-api-types";
 
 class Store {
-  request: Request;
+  private readonly request: Request;
 
   constructor(private readonly client: Client) {
     this.request = client.request;
@@ -26,9 +23,9 @@ class Store {
    * Endpoint: /store/v1/offers/
    * Documentation: https://valapidocs.techchrism.me/endpoint/prices
    */
-  async catalog() {
-    return this.request<PricesResponse>("pd", "/store/v1/offers/");
-  }
+  // async catalog() {
+  //   return this.request<PricesResponse>("pd", "/store/v1/offers/");
+  // }
 
   /**
    * Storefront
@@ -42,7 +39,9 @@ class Store {
   async today() {
     return this.request<StorefrontResponse>(
       "pd",
-      "/store/v2/storefront/" + this.client._puuid,
+      "/store/v3/storefront/" + this.client._puuid,
+      "POST",
+      {},
     );
   }
 
@@ -71,9 +70,7 @@ class Store {
    * Endpoint: /store/v1/entitlements/{puuid}/{ItemTypeID}
    * Documentation: https://valapidocs.techchrism.me/endpoint/owned-items
    */
-  async owned(ItemType: ItemType) {
-    const ItemTypeID = ITEM_TYPES[ItemType];
-
+  async owned(ItemTypeID: string) {
     return this.request<OwnedItemsResponse>(
       "pd",
       `/store/v1/entitlements/${this.client._puuid}/${ItemTypeID}`,

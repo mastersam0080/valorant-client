@@ -1,6 +1,3 @@
-import { AGENTS } from "../agent.js";
-
-import type { Agent } from "../agent.js";
 import type { Client } from "../client.js";
 import type { Request } from "../http.js";
 
@@ -13,7 +10,7 @@ import type {
 } from "valorant-api-types";
 
 class Pregame {
-  request: Request;
+  private readonly request: Request;
 
   constructor(private readonly client: Client) {
     this.request = client.request;
@@ -83,8 +80,7 @@ class Pregame {
    * Endpoint: /pregame/v1/matches/{pre-game match id}/select/{agent id}
    * Documentation: https://valapidocs.techchrism.me/endpoint/select-character
    */
-  async select(AgentName: Agent) {
-    const AgentID = AGENTS[AgentName];
+  async select(AgentID: string) {
     const { MatchID } = await this.current();
 
     return this.request<SelectCharacterResponse>(
@@ -106,8 +102,7 @@ class Pregame {
    * Endpoint: /pregame/v1/matches/{pre-game match id}/lock/{agent id}
    * Documentation: https://valapidocs.techchrism.me/endpoint/lock-character
    */
-  async lock(AgentName: Agent) {
-    const AgentID = AGENTS[AgentName];
+  async lock(AgentID: string) {
     const { MatchID } = await this.current();
 
     return this.request<LockCharacterResponse>(

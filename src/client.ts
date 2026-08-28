@@ -1,12 +1,13 @@
 // Main class for interacting with the VALORANT API
 
-import { Game } from "./endpoints/game.js";
-import { Pregame } from "./endpoints/pregame.js";
-import { Loadout } from "./endpoints/loadout.js";
 import { Contract } from "./endpoints/contract.js";
+import { Game } from "./endpoints/game.js";
+import { Loadout } from "./endpoints/loadout.js";
+import { Pregame } from "./endpoints/pregame.js";
 import { Store } from "./endpoints/store.js";
 
-import { HTTP } from "./http.js";
+import HTTP from "./http.js";
+
 import { local } from "./reader.js";
 
 import type { Request } from "./http.js";

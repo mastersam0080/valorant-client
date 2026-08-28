@@ -1,5 +1,6 @@
 import type { Client } from "../client.js";
 import type { Request } from "../http.js";
+
 import type {
   CurrentGameLoadoutsResponse,
   CurrentGameMatchResponse,
@@ -7,7 +8,7 @@ import type {
 } from "valorant-api-types";
 
 class Game {
-  request: Request;
+  private readonly request: Request;
 
   constructor(private readonly client: Client) {
     this.request = client.request;

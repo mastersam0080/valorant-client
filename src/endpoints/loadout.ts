@@ -1,3 +1,4 @@
+// Why techchrism
 import { setPlayerLoadoutEndpoint } from "valorant-api-types";
 
 import type { Client } from "../client.js";
@@ -8,13 +9,14 @@ import type {
   SetPlayerLoadoutResponse,
 } from "valorant-api-types";
 
+// Zod is in the dependency list of "valorant-api-types"
 import type { z } from "zod";
 
 // Get the request body type from the endpoint's schema
 type SetPlayerLoadoutBody = z.input<typeof setPlayerLoadoutEndpoint.body>;
 
 class Loadout {
-  request: Request;
+  private readonly request: Request;
 
   constructor(private readonly client: Client) {
     this.request = client.request;

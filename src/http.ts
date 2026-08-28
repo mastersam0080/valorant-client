@@ -29,9 +29,9 @@ class HTTP {
   constructor(private readonly client: Client) {}
 
   /**
-   * Sends a request to a Riot service or VALORANT endpoint.
+   * Sends a request to any Riot service and VALORANT endpoint.
    *
-   * Automatically gets the correct service URL and authentication headers.
+   * Automatically gets the correct base URL and authentication headers.
    *
    * @param type Service the endpoint belongs to
    * @param endpoint Endpoint to send the request to
@@ -63,5 +63,5 @@ class HTTP {
   };
 }
 
+export default HTTP;
 export type { Request };
-export { HTTP };
