@@ -8,13 +8,10 @@ const REGEX = /https:\/\/glz-(?<region>.+?)-1\.(?<shard>.+?)\.a\.pvp\.net/;
 const LOCALAPPDATA = process.env.LOCALAPPDATA!;
 
 /**
- * Reads the locally available values needed to connect to VALORANT.
- *
- * Reads the Riot Client lockfile and VALORANT's ShooterGame.log to get them.
- *
- * @returns The values needed to connect to VALORANT.
+ * Reads the Riot Client lockfile and VALORANT's ShooterGame.log file to get
+ * the locally available values needed to connect to VALORANT.
  */
-async function read() {
+async function local() {
   // %LocalAppData%\Riot Games\Riot Client\Config\lockfile
   const lockfile = path.join(
     LOCALAPPDATA,
@@ -53,4 +50,4 @@ async function read() {
   throw new Error("Failed to read values from lockfile and ShooterGame.log");
 }
 
-export { read };
+export { local };
