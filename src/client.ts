@@ -4,6 +4,7 @@ import { local } from "./reader.js";
 import { HTTP } from "./http.js";
 
 import type { Request } from "./http.js";
+import type { EntitlementsTokenResponse } from "valorant-api-types";
 
 class Client {
   // Values needed to connect to VALORANT
@@ -25,8 +26,8 @@ class Client {
   }
 
   /**
-   * Reads values from the local log and lock files and gets the remaining
-   * values from local and external APIs.
+   * Reads values from local log and lock files and gets the remaining values from
+   * local and external APIs before connecting to VALORANT.
    *
    * Stores all values and connects to VALORANT.
    */
@@ -38,6 +39,42 @@ class Client {
     this._port = values.port;
     this._password = values.password;
     this._protocol = values.protocol;
+
+    // Fetch missing values from local and external APIs
+    await Promise.all([this.authenticate(), this.version()]);
+  }
+
+  /**
+   * Fetches the client version from a third-party API.
+   *
+   * Documented at https://dash.valorant-api.com/endpoints/version
+   */
+  private async version() {
+    const response = await fetch("https://valorant-api.com/v1/version");
+
+    // Unlikely to fail
+    if (!response.ok) throw new Error("Failed to fetch the client version.");
+
+    const { data }: any = await response.json();
+
+    this._version = data.riotClientVersion;
+  }
+
+  /**
+   * Fetches the access token, entitlement token, and player UUID from the local
+   * entitlements endpoint.
+   *
+   * Documented at https://valapidocs.techchrism.me/endpoint/entitlements-token
+   */
+  private async authenticate() {
+    const response = await this.request<EntitlementsTokenResponse>(
+      "local",
+      "/entitlements/v1/token",
+    );
+
+    this._token = response.accessToken;
+    this._jwt = response.token;
+    this._puuid = response.subject;
   }
 }
 
