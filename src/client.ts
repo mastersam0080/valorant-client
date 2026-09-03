@@ -7,12 +7,10 @@ import { Pregame } from "./endpoints/pregame.js";
 import { Store } from "./endpoints/store.js";
 
 import HTTP from "./http.js";
-
 import { local } from "./reader.js";
 
-import type { Request } from "./http.js";
-
 import type { EntitlementsTokenResponse } from "valorant-api-types";
+import type { Request } from "./http.js";
 
 class Client {
   // Values needed to connect to VALORANT

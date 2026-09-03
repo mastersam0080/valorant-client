@@ -1,6 +1,5 @@
 import type { Client } from "../client.js";
 import type { Request } from "../http.js";
-
 import type {
   OwnedItemsResponse,
   StorefrontResponse,
