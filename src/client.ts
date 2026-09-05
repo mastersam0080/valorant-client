@@ -5,6 +5,7 @@ import { Game } from "./endpoints/game.js";
 import { Loadout } from "./endpoints/loadout.js";
 import { Party } from "./endpoints/party.js";
 import { Pregame } from "./endpoints/pregame.js";
+import { Pvp } from "./endpoints/pvp.js";
 import { Store } from "./endpoints/store.js";
 
 import HTTP from "./http.js";
@@ -35,6 +36,7 @@ class Client {
   contract: Contract;
   store: Store;
   party: Party;
+  pvp: Pvp;
 
   constructor() {
     this.request = new HTTP(this).request;
@@ -44,6 +46,7 @@ class Client {
     this.contract = new Contract(this);
     this.store = new Store(this);
     this.party = new Party(this);
+    this.pvp = new Pvp(this);
   }
 
   /**
